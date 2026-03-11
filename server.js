@@ -275,7 +275,7 @@ app.use('/person',personRoutes);
 app.use('/menuItem',menuItemRoutes);
 
 
-
+//comment adding for testing purpose
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000')
 })
