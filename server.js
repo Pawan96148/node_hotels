@@ -193,8 +193,7 @@ require('dotenv').config();
 
 
 const Laptop = require('./models/newLaptop');
-const Plant = require('./models/plant');
-
+const Plant = require('./models/Plant');
 //Middleware
 const bodyParser=require('body-parser');
 app.use(bodyParser.json()); // req.bodynet
@@ -205,7 +204,7 @@ app.get('/', (req, res) => {
   res.send('hey broh😎.... how can i help you????')
 });
 
-/*
+
 //POST method to post a new laptop
 app.post('/newLaptop',async(req,res)=>{
     try{
@@ -261,12 +260,12 @@ app.get('/plant',async (req,res) => {
 
     }
 });
-    }catch(err){
-        console.error("Error fetching plants:", err);
-        res.status(500).json({error: 'Internal Server Error'})
+//     }catch(err){
+//         console.error("Error fetching plants:", err);
+//         res.status(500).json({error: 'Internal Server Error'})
 
-    }
-});
+//     }
+// });
 
 //POST method to post a new plant
 app.post('/plant',async (req,res) => {
@@ -296,7 +295,7 @@ app.get('/plant',async (req,res) => {
 
     }
 });
-*/
+
 //import the router file
 
 const personRoutes = require('./routes/personRoutes');
