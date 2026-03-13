@@ -188,6 +188,7 @@ const express =require('express')
 
 const app = express();
 const db= require('./db');
+require('dotenv').config();
 
 
 
@@ -197,15 +198,16 @@ const Plant = require('./models/plant');
 //Middleware
 const bodyParser=require('body-parser');
 app.use(bodyParser.json()); // req.bodynet
+const PORT=process.env.PORT || 3000;
 
 //Routes
 app.get('/', (req, res) => {
   res.send('hey broh😎.... how can i help you????')
 });
 
-
+/*
 //POST method to post a new laptop
-app.post('/newLaptop',async (req,res)=>{
+app.post('/newLaptop',async(req,res)=>{
     try{
         const newLaptop=new Laptop(req.body);
         const response=await newLaptop.save();
@@ -259,12 +261,42 @@ app.get('/plant',async (req,res) => {
 
     }
 });
+    }catch(err){
+        console.error("Error fetching plants:", err);
+        res.status(500).json({error: 'Internal Server Error'})
 
+    }
+});
 
+//POST method to post a new plant
+app.post('/plant',async (req,res) => {
+    try{
+        const plant=new Plant(req.body);// Assuming the request data contain the plant data...
 
+    // create a new plant document using mongoose model..
+        const response=await plant.save();// save the database
+        console.log('Plant created successfully:', response);
+        res.status(200).json(response);
 
+    }catch(err){
+        console.error("Error creating plant:", err);
+        res.status(500).json({error: 'Internal Server Error'})
+    }
+});
+//GET method to get all plants
+app.get('/plant',async (req,res) => {
+    try{
+        const plant=await Plant.find();
+        console.log('All plants:', plant);
+        res.status(200).json(plant);
 
+    }catch(err){
+        console.error("Error fetching plants:", err);
+        res.status(500).json({error: 'Internal Server Error'})
 
+    }
+});
+*/
 //import the router file
 
 const personRoutes = require('./routes/personRoutes');
@@ -277,5 +309,5 @@ app.use('/menuItem',menuItemRoutes);
 
 //comment adding for testing purpose
 app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000')
+  console.log('Server is running on http://localhost:3000');
 })

@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 
 // Define the MongoDB connection URL
-const mongoURL = "mongodb://127.0.0.1:27017/hotels"; // hotels = database name
-
+const mongoURL = process.env.MONGODB_URL_LOCAL; // hotels = database name
+// const mongoURL = process.env.MONGODB_URL;
 // Setup MongoDB connection (no deprecated options)
-mongoose.connect(mongoURL);
+mongoose.connect(mongoURL)
 
 // Get the default connection
 const db = mongoose.connection;
+
 
 // Define event listeners for database connection
 db.on('connected', () => {
