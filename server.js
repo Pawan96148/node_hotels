@@ -218,83 +218,43 @@ app.post('/newLaptop',async(req,res)=>{
         res.status(500).json({error: 'Internal Server Error'})
     }
 });
-//GET method to get all plants
-app.get('/newLaptop',async(req,res)=>{
+//GET method to get all the laptops
+app.get('/newLaptop', async (req,res)=>{
     try{
-        const newLaptop=await Laptop.find();
-        console.log('All plants:', newLaptop);
-        res.status(200).json(newLaptop);
-
+        const laptops= await Laptop.find();
+        console.log('All laptops:',laptops);
+        res.status(200).json(laptops);
     }catch(err){
-        console.error("Error fetching plants:", err);
-        res.status(500).json({error: 'Internal Server Error'})
-
+        console.error("Error fetching laptops:", err);
+        res.status(500).json({error: 'Internal Server Error'});
     }
 });
 
 //POST method to post a new plant
-app.post('/plant',async (req,res) => {
+app.post('/plant', async (req,res)=>{
     try{
-        const plant=new Plant(req.body);// Assuming the request data contain the plant data...
-
-    // create a new plant document using mongoose model..
-        const response=await plant.save();// save the database
-        console.log('Plant created successfully:', response);
+        const plant = new Plant(req.body);
+        const response = await plant.save();
         res.status(200).json(response);
 
     }catch(err){
-        console.error("Error creating plant:", err);
-        res.status(500).json({error: 'Internal Server Error'})
+        console.error(err);
+        res.status(500).json({error:'Internal Server Error'});
     }
 });
-//GET method to get all plants
-app.get('/plant',async (req,res) => {
+
+//GET method to get all the plants
+app.get('/plant', async (req,res)=>{
     try{
-        const plant=await Plant.find();
-        console.log('All plants:', plant);
-        res.status(200).json(plant);
-
+        const plants = await Plant.find();
+        res.status(200).json(plants);
     }catch(err){
-        console.error("Error fetching plants:", err);
-        res.status(500).json({error: 'Internal Server Error'})
-
+        console.error(err);
+        res.status(500).json({error:'Internal Server Error'});
     }
 });
-//     }catch(err){
-//         console.error("Error fetching plants:", err);
-//         res.status(500).json({error: 'Internal Server Error'})
 
-//     }
-// });
 
-//POST method to post a new plant
-app.post('/plant',async (req,res) => {
-    try{
-        const plant=new Plant(req.body);// Assuming the request data contain the plant data...
-
-    // create a new plant document using mongoose model..
-        const response=await plant.save();// save the database
-        console.log('Plant created successfully:', response);
-        res.status(200).json(response);
-
-    }catch(err){
-        console.error("Error creating plant:", err);
-        res.status(500).json({error: 'Internal Server Error'})
-    }
-});
-//GET method to get all plants
-app.get('/plant',async (req,res) => {
-    try{
-        const plant=await Plant.find();
-        console.log('All plants:', plant);
-        res.status(200).json(plant);
-
-    }catch(err){
-        console.error("Error fetching plants:", err);
-        res.status(500).json({error: 'Internal Server Error'})
-
-    }
-});
 
 //import the router file
 
@@ -312,7 +272,7 @@ app.use('/menuItem',menuItemRoutes);
 
 
 //comment adding for testing purpose in online server
-app.listen(PORT,()=>{
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, ()=>{
+  console.log(`Server running on port ${PORT}`);
 });
 
