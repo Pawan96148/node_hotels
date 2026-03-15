@@ -4,15 +4,10 @@ require('dotenv').config();
 
 // Define the MongoDB connection URL
 // const mongoURL = process.env.MONGODB_URL_LOCAL; // hotels = database name
-const mongoURL = process.env.MONGODB_URL;
+const mongoURL = process.env.MONGODB_URI;
 // Setup MongoDB connection (no deprecated options)
 mongoose.connect(mongoURL)
-.then(() => {
-    console.log("MongoDB connected");
-})
-.catch((err) => {
-    console.error("MongoDB connection error...", err);
-});
+
 
 // Get the default connection
 const db = mongoose.connection;

@@ -305,8 +305,14 @@ const menuItemRoutes = require('./routes/menuItemRoutes');
 app.use('/person',personRoutes);
 app.use('/menuItem',menuItemRoutes);
 
+//comment adding for testing purpose in locally
+// app.listen(3000, () => {
+//   console.log('Server is running on http://localhost:3000');
+// });
 
-//comment adding for testing purpose
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
-})
+
+//comment adding for testing purpose in online server
+app.listen(PORT,()=>{
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
